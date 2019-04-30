@@ -10,8 +10,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const program = require('commander');
 
 const env = require('../config/prod.env')
+
+var arrArgs = program.parse(process.argv);
+var strPage = arrArgs.args[0];
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -23,7 +27,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
-    path: config.build.assetsRoot,
+    path: path.resolve(config.build.assetsRoot, strPage),
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
