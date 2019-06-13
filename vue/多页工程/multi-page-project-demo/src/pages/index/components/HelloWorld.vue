@@ -84,6 +84,11 @@
 </template>
 
 <script>
+  /**
+   * HelloWorld component description
+   * @vuedoc
+   * @exports HelloWorld
+   */
 export default {
   name: 'HelloWorld',
   data () {
